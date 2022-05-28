@@ -31,6 +31,7 @@ def main_page():
             for x in list:
                 listImg.append(os.path.join(path, x))
             print((listImg))
+            listImg.reverse()
             return render_template('upload.html', filename=os.path.join(app.config['UPLOAD_FOLDER'], filename), listImg=listImg)
         else:
 

@@ -17,10 +17,11 @@ def getListImg(imgPath):
     os.mkdir(uploadPath)
     path = imgPath
     hsv = [0, 65, 59, 255, 0, 255]
+    hsv_green = [55, 65, 100, 255, 0, 255]
 
     img = cv2.imread(path)
 
-    imgRs = detectColor(img, hsv)
+    imgRs = detectColor(img, hsv_green)
 
     imgContour, contours = getContours(imgRs, img, showCanny=False, 
                                     minArea=500, filter=0,
@@ -32,7 +33,7 @@ def getListImg(imgPath):
         #cv2.imshow(str(x), roi)
         cv2.imwrite(uploadPath+"/"+str(x)+'.jpg', roi)
 
-
+    
     return uploadPath
 
 # hlText = []

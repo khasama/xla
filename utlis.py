@@ -11,15 +11,15 @@ def detectColor(img, hsv):
 
 def getContours(img, imgDraw, showCanny=False, minArea=1000, filter=0, cThr=[100, 100], draw=False):
     imgDraw = imgDraw.copy()
-    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    imgBlur = cv2.GaussianBlur(imgGray, (5, 5), 1)
-    imgCanny = cv2.Canny(imgBlur, cThr[0], cThr[1])
+    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
+    imgBlur = cv2.GaussianBlur(imgGray, (5, 5), 1) #làm mịn
+    imgCanny = cv2.Canny(imgBlur, cThr[0], cThr[1]) # Tô Viền
     kernel = np.array((10, 10))
     imgDial = cv2.dilate(imgCanny, kernel, iterations=1)
     imgClose = cv2.morphologyEx(imgDial, cv2.MORPH_CLOSE, kernel)
 
     if showCanny: cv2.imshow('Canny', imgClose)
-    contours, hiearchy = cv2.findContours(imgClose, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, hiearchy = cv2.findContours(imgClose, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) 
     finalContours = []
     for i in contours:
         area = cv2.contourArea(i)
